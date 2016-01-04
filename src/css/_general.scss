@@ -1,0 +1,59 @@
+body,
+figure.interactive {
+    margin: 0;
+    padding: 0;
+    background-color: #dcdcdc;
+}
+
+// Link styles don't exist on the app
+a {
+    &,
+    &:hover,
+    &:active {
+        color: #005689;
+    }
+
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.nhs-header-wrapper {
+    background-color: #83d5cf;
+}
+
+.nhs-header,
+.nhs-main {
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    padding: 10px;
+    @include mq(mobileLandscape) {
+        padding: 20px;
+    }
+    @include mq(leftCol) {
+        padding-left: 160px;
+    }
+    @include mq(wide) {
+        padding-left: 240px;
+    }
+
+    @each $bp in (tablet, desktop, leftCol, wide) {
+        @include mq($bp) {
+            max-width: map-get($mq-breakpoints, $bp);
+        }
+    }
+}
+
+.nhs-header {
+    background-color: #69d1ca;
+}
+
+.nhs-main {
+    background-color: white;
+}
+
+.nhs-title {
+    @include fs-headline(9);
+}
