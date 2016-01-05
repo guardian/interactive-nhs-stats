@@ -5,6 +5,10 @@ figure.interactive {
     background-color: #dcdcdc;
 }
 
+p {
+    margin: 0 0 8px;
+}
+
 // Link styles don't exist on the app
 a {
     &,
@@ -33,10 +37,10 @@ a {
         padding: 20px;
     }
     @include mq(leftCol) {
-        padding-left: 160px;
+        padding-left: 180px;
     }
     @include mq(wide) {
-        padding-left: 240px;
+        padding-left: 260px;
     }
 
     @each $bp in (tablet, desktop, leftCol, wide) {
@@ -51,9 +55,44 @@ a {
 }
 
 .nhs-main {
+    position: relative;
     background-color: white;
+
+    min-height: 400px; // TODO: remove
 }
 
 .nhs-title {
     @include fs-headline(9);
+    margin: 0 0 24px;
+}
+
+.nhs-divider {
+    width: 100px;
+    border: 0;
+    padding: 0;
+    margin: 12px 0;
+    border-top: 1px solid #a5e3df;
+}
+
+.nhs-updated {
+    @include fs-textSans(1);
+    color: white;
+}
+
+.nhs-main__headline {
+    @include fs-header(2);
+    margin: 0 0 6px;
+
+    @include mq(leftCol) {
+        position: absolute;
+        left: 20px;
+        width: 140px;
+    }
+    @include mq(wide) {
+        width: 220px;
+    }
+}
+
+.nhs-main__stat {
+    @include fs-headline(6);
 }

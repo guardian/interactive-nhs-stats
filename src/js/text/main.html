@@ -1,7 +1,18 @@
 <div class="nhs-header-wrapper">
     <div class="nhs-header">
-        <h1 class="nhs-title">How is the NHS getting on?</h1>
+        <h1 class="nhs-title">{{=it.furniture.headline}}</h1>
+        <hr class="nhs-divider" />
+        <p class="nhs-updated">As of {{=it.furniture.updated}}</p>
+        <p>
+            <button class="interactive-share" data-network="facebook"></button>
+            <button class="interactive-share" data-network="twitter"></button>
+            <button class="interactive-share" data-network="email"></button>
+        </p>
     </div>
 </div>
-<div class="nhs-main">
-</div>
+{{~it.sections :section}}
+    <div class="nhs-main">
+        <h2 class="nhs-main__headline">{{=section.headline}}</h2>
+        <p class="nhs-main__stat">{{=section.statText}}</p>
+    </div>
+{{~}}
