@@ -31,9 +31,10 @@ export default function createChart(el, chart) {
     }
 
     function render() {
-        if (el.clientWidth === width && el.clientHeight === height) return;
-        width = el.clientWidth;
-        height = el.clientHeight;
+        var rect = el.getBoundingClientRect();
+        if (rect.width === width && rect.height === height) return;
+        width = rect.width;
+        height = rect.height;
 
         el.innerHTML = '';
 
@@ -43,8 +44,8 @@ export default function createChart(el, chart) {
         });
 
         var seriesGroup = svgEl(el, 'g');
-        chart.series.forEach(s => {
-            var d = 'M' + s.values.filter(v => !isNaN(v.value)).map((v, t) => `${x(t)},${y(v.value)}`).join('L');
+        chart.series.forEach((s, seriesNo) => {
+            var d = 'M' + s.values.map((v, t) => `${x(t)},${y(v.value)}`).join('L');
             svgEl(seriesGroup, 'path', 'nhs-chart__series', {'data-series': s.key, d});
         });
     }

@@ -1,4 +1,13 @@
+@mixin series($prop) {
+    @each $series, $color in $series-colors {
+        &[data-series='#{$series}'] {
+            #{$prop}: $color;
+        }
+    }
+}
+
 .nhs-chart {
+    display: block;
     overflow: visible;
 }
 
@@ -14,11 +23,7 @@
 }
 
 .nhs-chart__series {
-    stroke: #bdbdbd;
+    @include series(stroke);
     stroke-width: 3;
     fill: none;
-
-    &[data-series='2015/16'] {
-        stroke: #69d1ca;
-    }
 }

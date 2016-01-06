@@ -29,15 +29,18 @@ function app(el, config, doc, sheet) {
 
     var charts = {};
     sheet.sheets.charts.forEach(chart => {
-        var stats = sheet.sheets.data.map(row => {
-            return {
-                'series': row.series,
-                'year': parseNumber(row.year),
-                'month': row.month,
-                'week': parseNumber(row.week),
-                'value': parseNumber(row[chart.type])
-            };
-        });
+        var stats = sheet.sheets.data
+            .map(row => {
+                return {
+                    'series': row.series,
+                    'year': parseNumber(row.year),
+                    'month': row.month,
+                    'week': parseNumber(row.week),
+                    'value': parseNumber(row[chart.type])
+                };
+            })
+            .filter(stat => !isNaN(stat.value));
+
         charts[chart.type] = {
             'series': groupBy(stats, 'series'),
             'options': {
@@ -49,8 +52,10 @@ function app(el, config, doc, sheet) {
     });
 
     doc.sections.forEach(section => {
-        var latestStat = last(last(charts[section.type].series).values.filter(stat => !isNaN(stat.value)));
-        section.stat = section.stat.replace('{x}', latestStat.value.toLocaleString());
+        var series = charts[section.type].series;
+        var latest = last(last(series).values);
+        section.stat = section.stat.replace('{x}', latest.value.toLocaleString());
+        section.series = series.filter(s => s.values.length > 0).map(s => s.key);
     });
 
     el.innerHTML = templateFn(doc);

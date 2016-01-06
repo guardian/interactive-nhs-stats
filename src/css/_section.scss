@@ -9,7 +9,7 @@
     max-width: 960px;
 
     padding-bottom: 36px;
-    margin-top: 24px;
+    margin-top: 12px;
     &:first-child {
         margin-top: 0;
     }
@@ -43,11 +43,36 @@
 
 .nhs-section__stat {
     @include fs-headline(6);
-    margin-bottom: 24px;
+}
+
+.nhs-section__key {
+    @include fs-textSans(2);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+
+    & > li {
+        display: inline-block;
+        margin-right: 10px;
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 5px;
+            border-radius: 100px;
+        }
+
+        @each $series, $color in $series-colors {
+            &[data-series='#{$series}']::before {
+                background-color: $color;
+            }
+        }
+    }
 }
 
 .nhs-section__chart {
     width: 100%;
     max-width: 660px;
-    height: 200px;
+    height: 220px;
 }

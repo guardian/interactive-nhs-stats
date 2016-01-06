@@ -40,3 +40,13 @@ a {
         }
     }
 }
+
+.nhs-methodology-headline {
+    @include fs-header(1);
+    margin: 0 0 6px;
+}
+
+.nhs-methodology-copy {
+    @include fs-bodyCopy(1);
+    margin: 0 0 12px;
+}

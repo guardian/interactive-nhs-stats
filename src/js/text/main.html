@@ -15,7 +15,19 @@
         <li class="nhs-section">
             <h2 class="nhs-section__headline">{{=section.headline}}</h2>
             <p class="nhs-section__stat">{{=section.stat}}</p>
+            <ul class="nhs-section__key">
+                {{~section.series :series}}
+                    <li data-series="{{=series}}">{{=series}}</li>
+                {{~}}
+            </ul>
             <svg class="nhs-section__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
         </li>
     {{~}}
+    <li class="nhs-section">
+        <h2 class="nhs-section__headline">Methodology</h2>
+        {{~it.methodology :item}}
+            <h3 class="nhs-methodology-headline">{{=item.headline}}</h3>
+            <p class="nhs-methodology-copy">{{=item.copy}}</p>
+        {{~}}
+    </li>
 </ul>
