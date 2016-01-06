@@ -8,12 +8,13 @@
     box-sizing: border-box;
     max-width: 960px;
 
+    padding-bottom: 36px;
     margin-top: 24px;
     &:first-child {
         margin-top: 0;
     }
 
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid #bdbdbd;
     &:last-child {
         border-bottom: 0;
     }
@@ -42,4 +43,11 @@
 
 .nhs-section__stat {
     @include fs-headline(6);
+    margin-bottom: 24px;
+}
+
+.nhs-section__chart {
+    width: 100%;
+    max-width: 660px;
+    height: 200px;
 }

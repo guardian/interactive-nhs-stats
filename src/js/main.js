@@ -10,8 +10,6 @@ import mainHTML from './text/main.html!text'
 const docID = '1_z0hqi6kD1o9qmSl7xwvP__bIkaC060uIB2cv8eNS2Y';
 const sheetID = '1D12VO4GvbCOHoD6_TNVcmtR2EU0JDxIfzb5ZuO6m-5k';
 
-const headers = ['series', 'year', 'month', 'week'];
-
 var templateFn = doT.template(mainHTML);
 
 function $$(el, s) {
@@ -19,7 +17,7 @@ function $$(el, s) {
 }
 
 function parseNumber(s) {
-    return parseInt(s.replace(/,/g, ''));
+    return parseFloat(s.replace(/,/g, ''));
 }
 
 function last(array) {
@@ -29,33 +27,37 @@ function last(array) {
 function app(el, config, doc, sheet) {
     var shareFn = share(doc.furniture.headline, doc.furniture.shortURL, doc.furniture.hashtag);
 
-    // filter out standard headers
-    var types = Object.keys(sheet.sheets.data[0]).filter(type => headers.indexOf(type) === -1);
-
-    var stats = {};
-    types.forEach(type => {
-        var typeStats = sheet.sheets.data.map(row => {
+    var charts = {};
+    sheet.sheets.charts.forEach(chart => {
+        var stats = sheet.sheets.data.map(row => {
             return {
-                'series': parseNumber(row.series),
+                'series': row.series,
                 'year': parseNumber(row.year),
                 'month': row.month,
                 'week': parseNumber(row.week),
-                'value': parseNumber(row[type])
+                'value': parseNumber(row[chart.type])
             };
         });
-        stats[type] = groupBy(typeStats, 'series');
+        charts[chart.type] = {
+            'series': groupBy(stats, 'series'),
+            'options': {
+                'min': parseNumber(chart.min),
+                'max': parseNumber(chart.max),
+                'tic': parseNumber(chart.tic)
+            }
+        };
     });
 
     doc.sections.forEach(section => {
-        var latestStat = last(last(stats[section.type]).value.filter(stat => !isNaN(stat.value)));
+        var latestStat = last(last(charts[section.type].series).values.filter(stat => !isNaN(stat.value)));
         section.stat = section.stat.replace('{x}', latestStat.value.toLocaleString());
     });
 
     el.innerHTML = templateFn(doc);
 
-    $$('.js-chart').forEach(chartEl => chart(chartEl, stats[type]));
+    $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
 
-    $$('.interactive-share').forEach(shareEl => {
+    $$(el, '.interactive-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
         shareEl.addEventListener('click',() => shareFn(network));
     });
