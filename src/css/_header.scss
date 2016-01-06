@@ -1,0 +1,33 @@
+.nhs-header-wrapper {
+    background-color: #83d5cf;
+}
+
+.nhs-header {
+    background-color: #69d1ca;
+
+    @include mq(leftCol) {
+        padding-left: 180px;
+    }
+    @include mq(wide) {
+        padding-left: 260px;
+    }
+}
+
+.nhs-header__title {
+    @include fs-headline(9);
+    margin: 0 0 24px;
+}
+
+.nhs-header__divider {
+    width: 100px;
+    border: 0;
+    padding: 0;
+    margin: 12px 0;
+    border-top: 1px solid #a5e3df;
+}
+
+.nhs-header__updated {
+    @include fs-textSans(1);
+    color: white;
+}
+

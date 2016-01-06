@@ -1,0 +1,45 @@
+.nhs-sections {
+    position: relative;
+    list-style: none;
+    background-color: white;
+}
+
+.nhs-section {
+    box-sizing: border-box;
+    max-width: 960px;
+
+    margin-top: 24px;
+    &:first-child {
+        margin-top: 0;
+    }
+
+    border-bottom: 1px solid #f1f1f1;
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    @include mq(leftCol) {
+        padding-left: 160px;
+    }
+    @include mq(wide) {
+        padding-left: 240px;
+    }
+}
+
+.nhs-section__headline {
+    @include fs-header(2);
+    margin: 0 0 6px;
+
+    @include mq(leftCol) {
+        position: absolute;
+        left: 20px;
+        width: 140px;
+    }
+    @include mq(wide) {
+        width: 220px;
+    }
+}
+
+.nhs-section__stat {
+    @include fs-headline(6);
+}

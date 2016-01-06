@@ -1,8 +1,8 @@
 <div class="nhs-header-wrapper">
     <div class="nhs-header">
-        <h1 class="nhs-title">{{=it.furniture.headline}}</h1>
-        <hr class="nhs-divider" />
-        <p class="nhs-updated">As of {{=it.furniture.updated}}</p>
+        <h1 class="nhs-header__title">{{=it.furniture.headline}}</h1>
+        <hr class="nhs-header__divider" />
+        <p class="nhs-header__updated">As of {{=it.furniture.updated}}</p>
         <p>
             <button class="interactive-share" data-network="facebook"></button>
             <button class="interactive-share" data-network="twitter"></button>
@@ -10,9 +10,12 @@
         </p>
     </div>
 </div>
-{{~it.sections :section}}
-    <div class="nhs-main">
-        <h2 class="nhs-main__headline">{{=section.headline}}</h2>
-        <p class="nhs-main__stat">{{=section.statText}}</p>
-    </div>
-{{~}}
+<ul class="nhs-sections">
+    {{~it.sections :section}}
+        <li class="nhs-section">
+            <h2 class="nhs-section__headline">{{=section.headline}}</h2>
+            <p class="nhs-section__stat">{{=section.stat}}</p>
+            <svg class="nhs-section__chart js-chart" data-type="{{=section.type}}"></svg>
+        </li>
+    {{~}}
+</ul>

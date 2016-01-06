@@ -3,6 +3,7 @@ figure.interactive {
     margin: 0;
     padding: 0;
     background-color: #dcdcdc;
+    color: #333;
 }
 
 p {
@@ -23,12 +24,8 @@ a {
     }
 }
 
-.nhs-header-wrapper {
-    background-color: #83d5cf;
-}
-
 .nhs-header,
-.nhs-main {
+.nhs-sections {
     margin: 0 auto;
     box-sizing: border-box;
 
@@ -36,63 +33,10 @@ a {
     @include mq(mobileLandscape) {
         padding: 20px;
     }
-    @include mq(leftCol) {
-        padding-left: 180px;
-    }
-    @include mq(wide) {
-        padding-left: 260px;
-    }
 
     @each $bp in (tablet, desktop, leftCol, wide) {
         @include mq($bp) {
             max-width: map-get($mq-breakpoints, $bp);
         }
     }
-}
-
-.nhs-header {
-    background-color: #69d1ca;
-}
-
-.nhs-main {
-    position: relative;
-    background-color: white;
-
-    min-height: 400px; // TODO: remove
-}
-
-.nhs-title {
-    @include fs-headline(9);
-    margin: 0 0 24px;
-}
-
-.nhs-divider {
-    width: 100px;
-    border: 0;
-    padding: 0;
-    margin: 12px 0;
-    border-top: 1px solid #a5e3df;
-}
-
-.nhs-updated {
-    @include fs-textSans(1);
-    color: white;
-}
-
-.nhs-main__headline {
-    @include fs-header(2);
-    margin: 0 0 6px;
-
-    @include mq(leftCol) {
-        position: absolute;
-        left: 20px;
-        width: 140px;
-    }
-    @include mq(wide) {
-        width: 220px;
-    }
-}
-
-.nhs-main__stat {
-    @include fs-headline(6);
 }
