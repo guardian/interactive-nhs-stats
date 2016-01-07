@@ -3,7 +3,9 @@ import doT from 'olado/doT'
 import share from './lib/share'
 import sheetURL from './lib/sheetURL'
 import groupBy from './lib/groupBy'
-import chart from './lib/chart'
+
+import chart from './components/chart'
+import salary from './components/salary'
 
 import mainHTML from './text/main.html!text'
 
@@ -63,6 +65,7 @@ function app(el, config, doc, sheet) {
     el.innerHTML = templateFn(doc);
 
     $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
+    $$(el, '.js-salary').forEach(salaryEl => salary(salaryEl, parseNumber(salaryEl.getAttribute('data-salary'))));
 
     $$(el, '.interactive-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');

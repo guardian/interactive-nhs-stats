@@ -1,5 +1,5 @@
-import throttle from './throttle';
-import range from './range';
+import throttle from '../lib/throttle';
+import range from '../lib/range';
 
 const xmlns = 'http://www.w3.org/2000/svg';
 

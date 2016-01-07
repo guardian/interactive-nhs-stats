@@ -15,8 +15,8 @@
     {{~it.sections :section}}
         <li class="nhs-section">
             <h2 class="nhs-section__headline">{{=section.headline}}</h2>
+            <p class="nhs-section__stat">{{=section.stat}}</p>
             {{?section.block === 'chart'}}
-                <p class="nhs-section__stat">{{=section.stat}}</p>
                 <ul class="nhs-section__key">
                     {{~section.series :series}}
                         <li data-series="{{=series}}">{{=series}}</li>
@@ -24,10 +24,12 @@
                 </ul>
                 <svg class="nhs-section__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
             {{??section.block === 'salaries'}}
-                <ul class="nhs-section__salaries">
+                <ul class="nhs-section__jobs nhs-jobs">
                     {{~section.jobs :job}}
-                        <li>
-                            {{=job.title}}, {{=job.salary}}
+                        <li class="nhs-job">
+                            <h3 class="nhs-job__title">{{=job.title}}</h3>
+                            <p class="nhs-job__description">{{=job.description}}</p>
+                            <p class="nhs-job__salary js-salary" data-salary="{{=job.salary}}"></p>
                         </li>
                     {{~}}
                 </ul>
