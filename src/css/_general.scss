@@ -50,3 +50,10 @@ a {
     @include fs-bodyCopy(1);
     margin: 0 0 12px;
 }
+
+.nhs-number {
+    @include f-header;
+    color: $nhs;
+    font-size: 200px;
+    line-height: 210px;
+}

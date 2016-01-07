@@ -27,7 +27,7 @@
     }
 }
 
-.nhs-section__headline {
+.nhs-section__header {
     @include fs-header(2);
     margin: 0 0 6px;
 
@@ -41,7 +41,7 @@
     }
 }
 
-.nhs-section__stat {
+.nhs-section__headline {
     @include fs-headline(6);
 }
 

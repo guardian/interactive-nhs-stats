@@ -1,7 +1,8 @@
+$nhs: #69d1ca;
 $series-colors: (
     '2013/14': #dcdcdc,
     '2014/15': #bdbdbd,
-    '2015/16': #69d1ca
+    '2015/16': $nhs
 );
 
 @import "fonts";

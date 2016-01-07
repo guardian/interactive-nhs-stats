@@ -14,8 +14,8 @@
 <ul class="nhs-sections">
     {{~it.sections :section}}
         <li class="nhs-section">
-            <h2 class="nhs-section__headline">{{=section.headline}}</h2>
-            <p class="nhs-section__stat">{{=section.stat}}</p>
+            <h2 class="nhs-section__header">{{=section.header}}</h2>
+            <p class="nhs-section__headline">{{=section.headline}}</p>
             {{?section.block === 'chart'}}
                 <ul class="nhs-section__key">
                     {{~section.series :series}}
@@ -33,6 +33,8 @@
                         </li>
                     {{~}}
                 </ul>
+            {{??section.block === 'number'}}
+                <h3 class="nhs-number">{{=section.number}}</h3>
             {{?}}
         </li>
     {{~}}

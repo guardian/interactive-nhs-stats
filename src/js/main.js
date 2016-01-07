@@ -57,7 +57,7 @@ function app(el, config, doc, sheet) {
         if (section.block === 'chart') {
             var series = charts[section.type].series;
             var latest = last(last(series).values);
-            section.stat = section.stat.replace('{x}', latest.value.toLocaleString());
+            section.headline = section.headline.replace('{x}', latest.value.toLocaleString());
             section.series = series.filter(s => s.values.length > 0).map(s => s.key);
         }
     });

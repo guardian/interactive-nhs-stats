@@ -3,7 +3,7 @@
 }
 
 .nhs-header {
-    background-color: #69d1ca;
+    background-color: $nhs;
     color: white;
 
     @include mq(leftCol) {

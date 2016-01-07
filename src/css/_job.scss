@@ -31,7 +31,7 @@
     @include f-header;
     font-size: 36px;
     line-height: 40px;
-    color: #69d1ca;
+    color: $nhs;
 
     &::before {
         content: "£";
