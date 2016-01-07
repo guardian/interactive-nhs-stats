@@ -8,18 +8,36 @@
 
 .nhs-chart {
     display: block;
-    overflow: visible;
+    overflow: visible !important;
+    margin: 0 0 40px 50px;
+    @include mq(leftCol) {
+        margin-left: 0;
+    }
 }
 
-.nhs-chart__tic {
+.nhs-chart__y-tic {
     stroke: #ebebeb;
     stroke-width: 1;
     stroke-dasharray: 2,2;
+}
 
-    &:first-child {
-        stroke-width: 4;
-        stroke-dasharray: 0;
+.nhs-chart__x-tic-label,
+.nhs-chart__y-tic-label {
+    @include fs-textSans(2);
+    fill: #767676;
+}
+
+.nhs-chart__x-tic-label {
+    alignment-baseline: hanging;
+
+    &:last-child {
+        text-anchor: end;
     }
+}
+
+.nhs-chart__y-tic-label {
+    alignment-baseline: middle;
+    text-anchor: end;
 }
 
 .nhs-chart__series {

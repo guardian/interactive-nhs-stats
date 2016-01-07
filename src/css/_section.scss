@@ -10,7 +10,7 @@
     overflow: hidden;
 
     padding-bottom: 36px;
-    margin-top: 12px;
+    margin-top: 24px;
     &:first-child {
         margin-top: 0;
     }
@@ -43,15 +43,18 @@
 }
 
 .nhs-section__headline {
-    @include fs-headline(6);
+    @include fs-headline(5);
     max-width: 660px;
+    @include mq(tablet) {
+        @include fs-headline(6, $size-only: true);
+    }
 }
 
 .nhs-section__key {
     @include fs-textSans(2);
     list-style: none;
     padding: 0;
-    margin: 0 0 12px;
+    margin: 0 0 18px;
 
     & > li {
         display: inline-block;

@@ -23,6 +23,7 @@
                     {{~}}
                 </ul>
                 <svg class="nhs-section__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
+                <p class="nhs-copy">{{=section.copy}}</p>
             {{??section.block === 'salaries'}}
                 <ul class="nhs-section__jobs nhs-jobs">
                     {{~section.jobs :job}}
@@ -35,11 +36,12 @@
                 </ul>
             {{??section.block === 'number'}}
                 <h3 class="nhs-number">{{=section.number}}</h3>
+                <p class="nhs-copy">{{=section.copy}}</p>
             {{?}}
         </li>
     {{~}}
     <li class="nhs-section">
-        <h2 class="nhs-section__headline">Methodology</h2>
+        <h2 class="nhs-section__header">Methodology</h2>
         {{~it.methodology :item}}
             <h3 class="nhs-methodology-headline">{{=item.headline}}</h3>
             <p class="nhs-methodology-copy">{{=item.copy}}</p>
