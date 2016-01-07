@@ -29,9 +29,8 @@
 
 .nhs-job__salary {
     @include f-header;
-    font-size: 40px;
-    line-height: 44px;
-    height: 44px;
+    font-size: 36px;
+    line-height: 40px;
     color: #69d1ca;
 
     &::before {
