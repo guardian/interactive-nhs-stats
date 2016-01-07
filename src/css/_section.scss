@@ -44,6 +44,7 @@
 
 .nhs-section__headline {
     @include fs-headline(6);
+    max-width: 660px;
 }
 
 .nhs-section__key {
