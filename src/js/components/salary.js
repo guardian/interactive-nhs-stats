@@ -10,7 +10,7 @@ function update() {
     });
 }
 
-setInterval(update, 5000);
+setInterval(update, 10000);
 
 export default function createSalary(el, salary) {
     salaries.push({el, 'salary': salary / secsPerYear});
