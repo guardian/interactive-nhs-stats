@@ -46,9 +46,14 @@
 
 .nhs-job__salary {
     @include f-header;
-    font-size: 36px;
-    line-height: 40px;
     color: $nhs;
+
+    font-size: 32px;
+    line-height: 36px;
+    @include mq(mobileLandscape) {
+        font-size: 36px;
+        line-height: 40px;
+    }
 
     &::before {
         content: "£";

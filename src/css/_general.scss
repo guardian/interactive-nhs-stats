@@ -54,9 +54,14 @@ a {
 .nhs-number {
     @include f-header;
     color: $nhs;
-    font-size: 200px;
-    line-height: 210px;
     margin: 0;
+
+    font-size: 150px;
+    line-height: 160px;
+    @include mq(mobileLandscape) {
+        font-size: 200px;
+        line-height: 210px;
+    }
 }
 
 .nhs-copy {
