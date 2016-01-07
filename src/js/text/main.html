@@ -2,6 +2,7 @@
     <div class="nhs-header">
         <h1 class="nhs-header__title">{{=it.furniture.headline}}</h1>
         <hr class="nhs-header__divider" />
+        <p class="nhs-header__standfirst">{{=it.furniture.standfirst}}</p>
         <p class="nhs-header__updated">As of {{=it.furniture.updated}}</p>
         <p>
             <button class="interactive-share" data-network="facebook"></button>
@@ -14,13 +15,23 @@
     {{~it.sections :section}}
         <li class="nhs-section">
             <h2 class="nhs-section__headline">{{=section.headline}}</h2>
-            <p class="nhs-section__stat">{{=section.stat}}</p>
-            <ul class="nhs-section__key">
-                {{~section.series :series}}
-                    <li data-series="{{=series}}">{{=series}}</li>
-                {{~}}
-            </ul>
-            <svg class="nhs-section__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
+            {{?section.block === 'chart'}}
+                <p class="nhs-section__stat">{{=section.stat}}</p>
+                <ul class="nhs-section__key">
+                    {{~section.series :series}}
+                        <li data-series="{{=series}}">{{=series}}</li>
+                    {{~}}
+                </ul>
+                <svg class="nhs-section__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
+            {{??section.block === 'salaries'}}
+                <ul class="nhs-section__salaries">
+                    {{~section.jobs :job}}
+                        <li>
+                            {{=job.title}}, {{=job.salary}}
+                        </li>
+                    {{~}}
+                </ul>
+            {{?}}
         </li>
     {{~}}
     <li class="nhs-section">

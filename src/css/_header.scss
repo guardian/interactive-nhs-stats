@@ -4,6 +4,7 @@
 
 .nhs-header {
     background-color: #69d1ca;
+    color: white;
 
     @include mq(leftCol) {
         padding-left: 180px;
@@ -26,8 +27,11 @@
     border-top: 1px solid #a5e3df;
 }
 
+.nhs-header__standfirst {
+    max-width: 660px;
+}
+
 .nhs-header__updated {
     @include fs-textSans(1);
-    color: white;
 }
 
