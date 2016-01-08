@@ -12,13 +12,13 @@ function last(array) {
 
 export default function loadData(fn) {
     var docReq = reqwest({
-        url: sheetURL(docID, true), // TODO: remove test
+        url: sheetURL(docID),
         type: 'json',
         crossOrigin: true
     });
 
     var sheetReq = reqwest({
-        url: sheetURL(sheetID, true), // TODO: remove test
+        url: sheetURL(sheetID),
         type: 'json',
         crossOrigin: true
     });

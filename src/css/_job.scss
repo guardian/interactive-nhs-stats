@@ -1,7 +1,7 @@
 .nhs-jobs {
     overflow: hidden;
     list-style: none;
-    margin: 0 -10px;
+    margin: 0 -10px 10px;
     padding: 0;
     &::after {
         content: "";
@@ -36,12 +36,21 @@
 
 .nhs-job__title {
     @include fs-header(1);
+    margin: 0;
+}
+
+.nhs-job__total {
+    @include fs-textSans(2);
     margin: 0 0 6px;
 }
 
 .nhs-job__description {
     @include fs-textSans(2);
     color: #767676;
+    min-height: 90px;
+    @include mq(leftCol) {
+        min-height: 126px;
+    }
 }
 
 .nhs-job__salary {

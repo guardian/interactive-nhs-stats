@@ -35,6 +35,7 @@
                     {{~section.jobs :job}}
                         <li class="nhs-job">
                             <h3 class="nhs-job__title">{{=job.title}}</h3>
+                            <p class="nhs-job__total">£{{=job.salary.toLocaleString()}} annually</p>
                             <p class="nhs-job__description">{{=job.description}}</p>
                             <p class="nhs-job__salary js-ticker" data-ticker="{{=job.salary}}"></p>
                         </li>

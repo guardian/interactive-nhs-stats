@@ -73,9 +73,6 @@ a {
 .nhs-source {
     @include fs-textSans(2);
     color: #bdbdbd;
-    @include mq(mobileLandscape) {
-        text-align: right;
-    }
 }
 
 .nhs-heading-subheadline {
