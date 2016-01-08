@@ -2,6 +2,7 @@ import reqwest from 'reqwest'
 import sheetURL from './sheetURL'
 import groupBy from './groupBy'
 import parseNumber from './parseNumber'
+import tLS from './tLS'
 
 const docID = '1_z0hqi6kD1o9qmSl7xwvP__bIkaC060uIB2cv8eNS2Y';
 const sheetID = '1D12VO4GvbCOHoD6_TNVcmtR2EU0JDxIfzb5ZuO6m-5k';
@@ -55,8 +56,10 @@ export default function loadData(fn) {
             if (section.block === 'chart') {
                 var series = charts[section.type].series;
                 var latest = last(last(series).values);
-                section.headline = section.headline.replace('{x}', latest.value.toLocaleString());
+                section.headline = section.headline.replace('{x}', tLS(latest.value));
                 section.series = series.filter(s => s.values.length > 0).map(s => s.key);
+            } else if (section.block === 'salaries') {
+                section.jobs.forEach(job => job.salary = tLS(parseNumber(job.salary)));
             }
         });
 

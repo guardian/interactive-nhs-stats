@@ -2,6 +2,7 @@ import doT from 'olado/doT'
 import share from './lib/share'
 import loadData from './lib/loadData'
 import parseNumber from './lib/parseNumber'
+import tLS from './lib/tLS'
 
 import chart from './components/chart'
 import ticker from './components/ticker'

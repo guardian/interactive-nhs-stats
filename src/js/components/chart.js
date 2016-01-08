@@ -1,5 +1,6 @@
 import throttle from '../lib/throttle';
 import range from '../lib/range';
+import tLS from '../lib/tLS';
 
 const xmlns = 'http://www.w3.org/2000/svg';
 
@@ -54,7 +55,7 @@ export default function createChart(el, chart, shortLabels=false) {
         range(chart.options.min, chart.options.max, chart.options.tic).forEach(yTic => {
             svgEl(yTicGroup, 'line', 'nhs-chart__y-tic', {'x1': 0, 'y1': y(yTic), 'x2': width, 'y2': y(yTic)});
             svgEl(yTicLabelGroup, 'text', 'nhs-chart__y-tic-label', {'x': -10, 'y': y(yTic)})
-                .textContent = yTic.toLocaleString();
+                .textContent = tLS(yTic);
         });
 
         if (chart.options.threshold) {
