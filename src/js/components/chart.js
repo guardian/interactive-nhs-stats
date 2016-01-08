@@ -4,6 +4,9 @@ import tLS from '../lib/tLS';
 
 const xmlns = 'http://www.w3.org/2000/svg';
 
+const marginLeft = 40;
+const marginBottom = 40;
+
 function svgEl(parentEl, type, clazz='', attrs={}) {
     var el = document.createElementNS(xmlns, type);
 
@@ -31,11 +34,11 @@ export default function createChart(el, chart, shortLabels=false) {
     var yRange = chart.options.max - chart.options.min;
 
     function x(value) {
-        return (value - xMin) / xRange * width;
+        return (value - xMin) / xRange * (width - marginLeft) + marginLeft;
     }
 
     function y(value) {
-        return (1 - (value - chart.options.min) / yRange) * height;
+        return (1 - (value - chart.options.min) / yRange) * (height - marginBottom);
     }
 
     function render() {
@@ -46,22 +49,22 @@ export default function createChart(el, chart, shortLabels=false) {
 
         el.innerHTML = '';
 
-        var xTicLabelGroup = svgEl(el, 'g', '', {'transform': `translate(0, ${height + 15})`});
+        var xTicLabelGroup = svgEl(el, 'g', '', {'transform': `translate(0, ${height - marginBottom + 15})`});
         svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMin)}).textContent = shortLabels ? 'Dec' : 'December';
         svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMax)}).textContent = shortLabels ? 'Mar': 'March';
 
         var yTicGroup = svgEl(el, 'g');
         var yTicLabelGroup = svgEl(el, 'g')
         range(chart.options.min, chart.options.max, chart.options.tic).forEach(yTic => {
-            svgEl(yTicGroup, 'line', 'nhs-chart__y-tic', {'x1': 0, 'y1': y(yTic), 'x2': width, 'y2': y(yTic)});
-            svgEl(yTicLabelGroup, 'text', 'nhs-chart__y-tic-label', {'x': -10, 'y': y(yTic)})
+            svgEl(yTicGroup, 'line', 'nhs-chart__y-tic', {'x1': marginLeft, 'y1': y(yTic), 'x2': width, 'y2': y(yTic)});
+            svgEl(yTicLabelGroup, 'text', 'nhs-chart__y-tic-label', {'x': marginLeft - 10, 'y': y(yTic)})
                 .textContent = tLS(yTic);
         });
 
         if (chart.options.threshold) {
             let thresholdGroup = svgEl(el, 'g');
             let yV = y(chart.options.threshold);
-            svgEl(thresholdGroup, 'line', 'nhs-chart__threshold', {'x1': 0, 'y1': yV, 'x2': width, 'y2': yV});
+            svgEl(thresholdGroup, 'line', 'nhs-chart__threshold', {'x1': marginLeft, 'y1': yV, 'x2': width, 'y2': yV});
             svgEl(thresholdGroup, 'text', 'nhs-chart__threshold-label', {'x': width, 'y': yV - 7}).textContent = chart.options.label;
         }
 

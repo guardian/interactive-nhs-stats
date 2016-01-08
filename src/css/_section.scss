@@ -74,9 +74,9 @@
 
 .nhs-section__chart {
     max-width: 660px;
-    height: 150px;
+    height: 190px;
     @include mq(tablet) {
-        height: 220px;
+        height: 260px;
     }
     @include mq(leftCol) {
         margin-left: 0;
