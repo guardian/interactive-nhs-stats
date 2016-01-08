@@ -4,7 +4,7 @@ import loadData from './lib/loadData'
 import parseNumber from './lib/parseNumber'
 
 import chart from './components/chart'
-import salary from './components/salary'
+import ticker from './components/ticker'
 
 import mainHTML from './text/main.html!text'
 
@@ -20,7 +20,7 @@ function app(el, config, doc, charts) {
     el.innerHTML = templateFn(doc);
 
     $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
-    $$(el, '.js-salary').forEach(salaryEl => salary(salaryEl, parseNumber(salaryEl.getAttribute('data-salary'))));
+    $$(el, '.js-ticker').forEach(tickerEl => ticker(tickerEl, parseNumber(tickerEl.getAttribute('data-ticker'))));
 
     $$(el, '.interactive-share').forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');

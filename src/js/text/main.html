@@ -36,12 +36,16 @@
                         <li class="nhs-job">
                             <h3 class="nhs-job__title">{{=job.title}}</h3>
                             <p class="nhs-job__description">{{=job.description}}</p>
-                            <p class="nhs-job__salary js-salary" data-salary="{{=job.salary}}"></p>
+                            <p class="nhs-job__salary js-ticker" data-ticker="{{=job.salary}}"></p>
                         </li>
                     {{~}}
                 </ul>
             {{??section.block === 'number'}}
-                <h3 class="nhs-number">{{=section.number}}</h3>
+                {{?section.modifier === 'babies'}}
+                    <h3 class="nhs-number js-ticker" data-ticker="{{=section.number * 12}}"></h3>
+                {{??}}
+                    <h3 class="nhs-number">{{=section.number}}</h3>
+                {{?}}
                 <p class="nhs-copy">{{=section.copy}}</p>
             {{?}}
         </li>
