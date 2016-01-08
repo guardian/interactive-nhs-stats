@@ -4,6 +4,7 @@ figure.interactive {
     padding: 0;
     background-color: #dcdcdc;
     color: #333;
+    @include fs-bodyCopy(2);
 }
 
 p {
