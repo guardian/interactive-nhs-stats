@@ -70,6 +70,12 @@ a {
     max-width: 600px;
 }
 
+.nhs-source {
+    @include fs-textSans(2);
+    color: #bdbdbd;
+    text-align: right;
+}
+
 .nhs-heading-subheadline {
     @include fs-headline(5);
     font-weight: 200;

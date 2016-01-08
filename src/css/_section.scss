@@ -29,6 +29,9 @@
 
     &.nhs-section--heading {
         border-bottom: 0;
+        border-top: 1px solid #bdbdbd;
+        padding-top: 12px;
+        margin-top: -1px;
 
         .nhs-section__headline {
             @include fs-headline(9, $size-only: true);
@@ -65,13 +68,16 @@
     }
 
     b {
-        font-weight: 700;
+        font-weight: 600;
     }
 }
 
 .nhs-section__chart {
     max-width: 660px;
-    height: 220px;
+    height: 150px;
+    @include mq(tablet) {
+        height: 220px;
+    }
     @include mq(leftCol) {
         margin-left: 0;
     }

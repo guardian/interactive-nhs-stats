@@ -44,7 +44,9 @@ export default function loadData(fn) {
                 'options': {
                     'min': parseNumber(chart.min),
                     'max': parseNumber(chart.max),
-                    'tic': parseNumber(chart.tic)
+                    'tic': parseNumber(chart.tic),
+                    'threshold': parseNumber(chart.threshold),
+                    'label': chart.label
                 }
             };
         });

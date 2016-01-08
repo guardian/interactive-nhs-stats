@@ -38,6 +38,18 @@
     text-anchor: end;
 }
 
+.nhs-chart__threshold {
+    stroke: #fcba12;
+    stroke-width: 2;
+    stroke-dasharray: 4,4;
+}
+
+.nhs-chart__threshold-label {
+    @include fs-textSans(2);
+    fill: #fcba12;
+    text-anchor: end;
+}
+
 .nhs-chart__series {
     @include series(stroke);
     stroke-width: 3;

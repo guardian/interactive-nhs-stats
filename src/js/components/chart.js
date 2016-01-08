@@ -57,6 +57,13 @@ export default function createChart(el, chart, shortLabels=false) {
                 .textContent = yTic.toLocaleString();
         });
 
+        if (chart.options.threshold) {
+            let thresholdGroup = svgEl(el, 'g');
+            let yV = y(chart.options.threshold);
+            svgEl(thresholdGroup, 'line', 'nhs-chart__threshold', {'x1': 0, 'y1': yV, 'x2': width, 'y2': yV});
+            svgEl(thresholdGroup, 'text', 'nhs-chart__threshold-label', {'x': width, 'y': yV - 7}).textContent = chart.options.label;
+        }
+
         var seriesGroup = svgEl(el, 'g');
         chart.series.forEach((s, seriesNo) => {
             var d = 'M' + s.values.map(v => `${x(v.week)},${y(v.value)}`).join('L');
