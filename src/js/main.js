@@ -1,16 +1,12 @@
-import reqwest from 'reqwest'
 import doT from 'olado/doT'
 import share from './lib/share'
-import sheetURL from './lib/sheetURL'
+import loadData from './lib/loadData'
 import groupBy from './lib/groupBy'
 
 import chart from './components/chart'
 import salary from './components/salary'
 
 import mainHTML from './text/main.html!text'
-
-const docID = '1_z0hqi6kD1o9qmSl7xwvP__bIkaC060uIB2cv8eNS2Y';
-const sheetID = '1D12VO4GvbCOHoD6_TNVcmtR2EU0JDxIfzb5ZuO6m-5k';
 
 var templateFn = doT.template(mainHTML);
 
@@ -74,17 +70,5 @@ function app(el, config, doc, sheet) {
 }
 
 export function init(el, context, config, mediator) {
-    var docReq = reqwest({
-        url: sheetURL(docID, true), // TODO: remove test
-        type: 'json',
-        crossOrigin: true
-    });
-
-    var sheetReq = reqwest({
-        url: sheetURL(sheetID, true), // TODO: remove test
-        type: 'json',
-        crossOrigin: true
-    });
-
-    docReq.then(doc => sheetReq.then(sheet => app(el, config, doc, sheet)));
+    loadData((doc, sheet) => app(el, config, doc, sheet));
 }

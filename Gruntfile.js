@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['src/js/**/*'],
-                tasks: ['shell:interactive'],
+                tasks: ['shell:interactive', 'shell:snap'],
             },
             css: {
                 files: ['src/css/**/*'],
