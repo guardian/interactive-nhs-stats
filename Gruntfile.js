@@ -25,9 +25,9 @@ module.exports = function(grunt) {
                 files: ['harness/**/*'],
                 tasks: ['harness']
             },
-            thrasher: {
-                files: ['src/thrasher.json.tpl', 'src/thrasher.html'],
-                tasks: ['template:thrasher']
+            snap: {
+                files: ['src/thrasher.json.tpl', 'src/snap.html'],
+                tasks: ['template:snap']
             }
         },
 
@@ -54,6 +54,14 @@ module.exports = function(grunt) {
                         cwd: '.'
                     }
                 }
+            },
+            snap: {
+                command: './node_modules/.bin/jspm bundle-sfx <%= visuals.jspmFlags %> src/js/snap build/snap.js',
+                options: {
+                    execOptions: {
+                        cwd: '.'
+                    }
+                }
             }
         },
 
@@ -68,13 +76,14 @@ module.exports = function(grunt) {
                     'build/boot.js': ['src/js/boot.js.tpl'],
                 }
             },
-            'thrasher': {
+            'snap': {
                 'options': {
                     'data': function () {
-                        return {'html': JSON.stringify(fs.readFileSync('src/thrasher.html').toString())};
+                        return {'html': JSON.stringify(fs.readFileSync('src/snap.html').toString())};
                     }
                 },
                 'files': {
+                    'build/snap.html': ['src/snap.html'],
                     'build/source.json': ['src/thrasher.json.tpl']
                 }
             }
@@ -95,7 +104,7 @@ module.exports = function(grunt) {
                 files: [
                     { // BOOT
                         expand: true, cwd: 'build/',
-                        src: ['boot.js', 'source.json'],
+                        src: ['boot.js', 'source.json', 'snap.html'],
                         dest: 'deploy/<%= visuals.timestamp %>'
                     },
                     { // ASSETS
@@ -168,7 +177,7 @@ module.exports = function(grunt) {
                     { // BOOT
                         expand: true,
                         cwd: 'deploy/<%= visuals.timestamp %>',
-                        src: ['boot.js', 'source.json'],
+                        src: ['boot.js', 'source.json', 'snap.html'],
                         dest: '<%= visuals.s3.path %>',
                         params: { CacheControl: 'max-age=60' }
                     }]
@@ -209,9 +218,15 @@ module.exports = function(grunt) {
     grunt.registerTask('boot_url', function() {
         grunt.log.write('\nBOOT URL: '['green'].bold)
         grunt.log.writeln(grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/boot.js'))
+
+        var url = 'http://preview.gutools.co.uk/global/ng-interactive/2016/jan/07/how-is-the-nhs-getting-on';
+        var snapURL = grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/snap.html');
+        grunt.log.write('\nSNAP: '['green'].bold)
+        grunt.log.writeln(url + '?gu-snapType=document&gu-snapUri=' + encodeURIComponent(snapURL));
     })
 
-    grunt.registerTask('interactive', ['shell:interactive', 'template:bootjs', 'template:thrasher', 'sass:interactive', 'copy:assets'])
+    grunt.registerTask('snap', ['shell:snap', 'template:snap'])
+    grunt.registerTask('interactive', ['shell:interactive', 'template:bootjs', 'snap', 'sass:interactive', 'copy:assets'])
     grunt.registerTask('default', ['clean', 'copy:harness', 'interactive', 'connect', 'watch']);
     grunt.registerTask('build', ['clean', 'interactive']);
     grunt.registerTask('deploy', ['loadDeployConfig', 'prompt:visuals', 'build', 'copy:deploy', 'aws_s3', 'boot_url']);

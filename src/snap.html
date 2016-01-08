@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="<%= assetPath %>/main.css" />
+</head>
+<body>
+    <div class="interactive"></div>
+    <script src="<%= assetPath %>/snap.js"></script>
+    <script>
+        init(document.querySelector('.interactive'), {'assetPath': '<%= assetPath %>'});
+    </script>
+</body>
+</html>
