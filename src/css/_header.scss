@@ -16,19 +16,24 @@
 
 .nhs-header__title {
     @include fs-headline(9);
+    font-weight: 200;
     margin: 0 0 24px;
 }
 
 .nhs-header__divider {
-    width: 100px;
+    width: 140px;
     border: 0;
     padding: 0;
-    margin: 12px 0;
+    margin: 0 0 4px;
     border-top: 1px solid #a5e3df;
+    border-bottom: 1px solid #a5e3df;
 }
 
 .nhs-header__standfirst {
     max-width: 660px;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
 }
 
 .nhs-header__updated {

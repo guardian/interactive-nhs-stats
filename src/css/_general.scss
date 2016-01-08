@@ -53,7 +53,7 @@ a {
 }
 
 .nhs-number {
-    @include f-header;
+    @include f-headline;
     color: $nhs;
     margin: 0;
 
