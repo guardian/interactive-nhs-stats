@@ -27,7 +27,7 @@
         padding-left: 240px;
     }
 
-    &.nhs-section--sitrep {
+    &.nhs-section--heading {
         border-bottom: 0;
 
         .nhs-section__headline {
@@ -35,6 +35,10 @@
             font-weight: 200;
             margin: 0;
         }
+    }
+
+    &.nhs-section--salaries {
+        border-bottom: 0;
     }
 }
 
@@ -54,9 +58,14 @@
 
 .nhs-section__headline {
     @include fs-headline(5);
+    font-weight: 200;
     max-width: 660px;
     @include mq(tablet) {
         @include fs-headline(6, $size-only: true);
+    }
+
+    b {
+        font-weight: 700;
     }
 }
 

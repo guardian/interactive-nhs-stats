@@ -50,6 +50,7 @@ a {
 .nhs-methodology-copy {
     @include fs-bodyCopy(1);
     margin: 0 0 12px;
+    max-width: 660px;
 }
 
 .nhs-number {
@@ -69,7 +70,7 @@ a {
     max-width: 600px;
 }
 
-.nhs-sitrep-week {
+.nhs-heading-subheadline {
     @include fs-headline(5);
     font-weight: 200;
 }
