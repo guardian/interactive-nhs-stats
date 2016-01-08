@@ -52,6 +52,7 @@ figure.interactive {
 .nhs-snap__headline {
     @include fs-headline(5);
     margin:  0 0 12px;
+    height: 96px;
 }
 
 .nhs-snap__key {

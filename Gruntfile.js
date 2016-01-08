@@ -82,14 +82,8 @@ module.exports = function(grunt) {
                 }
             },
             'snap': {
-                'options': {
-                    'data': function () {
-                        return {'html': JSON.stringify(fs.readFileSync('src/snap.html').toString())};
-                    }
-                },
                 'files': {
                     'build/snap.html': ['src/snap.html'],
-                    'build/source.json': ['src/thrasher.json.tpl']
                 }
             }
         },
@@ -114,7 +108,7 @@ module.exports = function(grunt) {
                     },
                     { // ASSETS
                         expand: true, cwd: 'build/',
-                        src: ['main.js', 'main.css', 'main.js.map', 'main.css.map', 'assets/**/*'],
+                        src: ['main.js', 'main.css', 'snap.css', 'main.js.map', 'main.css.map', 'assets/**/*'],
                         dest: 'deploy/<%= visuals.timestamp %>/<%= visuals.timestamp %>'
                     }
                 ]
