@@ -24,6 +24,7 @@ body {
     &,
     &:hover {
         color: #333;
+        text-decoration: none;
     }
 }
 
@@ -35,12 +36,18 @@ body {
 }
 
 .nhs-snap {
-    display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
-    width: 313px;
     height: 400px;
     padding: 20px;
+
+    @media (min-width: 700px) {
+        display: inline-block;
+        width: 50%;
+    }
+    @media (min-width: 940px) {
+        width: 33.3333%;
+    }
 
     background-color: #6ec2bd;
     &:nth-child(odd) {
