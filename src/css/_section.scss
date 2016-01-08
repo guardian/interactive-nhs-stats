@@ -26,6 +26,16 @@
     @include mq(wide) {
         padding-left: 240px;
     }
+
+    &.nhs-section--sitrep {
+        border-bottom: 0;
+
+        .nhs-section__headline {
+            @include fs-headline(9, $size-only: true);
+            font-weight: 200;
+            margin: 0;
+        }
+    }
 }
 
 .nhs-section__header {

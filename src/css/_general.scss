@@ -68,3 +68,8 @@ a {
 .nhs-copy {
     max-width: 600px;
 }
+
+.nhs-sitrep-week {
+    @include fs-headline(5);
+    font-weight: 200;
+}

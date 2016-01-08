@@ -13,10 +13,12 @@
 </div>
 <ul class="nhs-sections">
     {{~it.sections :section}}
-        <li class="nhs-section">
-            <h2 class="nhs-section__header">{{=section.header}}</h2>
+        <li class="nhs-section nhs-section--{{=section.block}}">
+            <h2 class="nhs-section__header">{{=section.header || ''}}</h2>
             <p class="nhs-section__headline">{{=section.headline}}</p>
-            {{?section.block === 'chart'}}
+            {{?section.block === 'sitrep'}}
+                <p class="nhs-sitrep-week">{{=section.week}}</p>
+            {{??section.block === 'chart'}}
                 <ul class="nhs-chart-key">
                     {{~section.series :series}}
                         <li data-series="{{=series}}">{{=series}}</li>
