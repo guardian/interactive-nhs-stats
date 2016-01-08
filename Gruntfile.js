@@ -15,7 +15,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['src/css/**/*'],
-                tasks: ['sass:interactive'],
+                tasks: ['sass:interactive', 'sass:snap'],
             },
             assets: {
                 files: ['src/assets/**/*'],
@@ -42,6 +42,11 @@ module.exports = function(grunt) {
             interactive: {
                 files: {
                     'build/main.css': 'src/css/main.scss'
+                }
+            },
+            snap: {
+                files: {
+                    'build/snap.css': 'src/css/snap.scss'
                 }
             }
         },
@@ -225,7 +230,7 @@ module.exports = function(grunt) {
         grunt.log.writeln(url + '?gu-snapType=document&gu-snapUri=' + encodeURIComponent(snapURL));
     })
 
-    grunt.registerTask('snap', ['shell:snap', 'template:snap'])
+    grunt.registerTask('snap', ['shell:snap', 'sass:snap', 'template:snap'])
     grunt.registerTask('interactive', ['shell:interactive', 'template:bootjs', 'snap', 'sass:interactive', 'copy:assets'])
     grunt.registerTask('default', ['clean', 'copy:harness', 'interactive', 'connect', 'watch']);
     grunt.registerTask('build', ['clean', 'interactive']);

@@ -10,6 +10,7 @@
     display: block;
     overflow: visible !important;
     margin: 0 0 40px 50px;
+    width: calc(100% - 50px);
 }
 
 .nhs-chart__y-tic {
@@ -41,4 +42,30 @@
     @include series(stroke);
     stroke-width: 3;
     fill: none;
+}
+
+.nhs-chart-key {
+    @include fs-textSans(2);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+
+    & > li {
+        display: inline-block;
+        margin-right: 10px;
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 5px;
+            border-radius: 100px;
+        }
+
+        @each $series, $color in $series-colors {
+            &[data-series='#{$series}']::before {
+                background-color: $color;
+            }
+        }
+    }
 }

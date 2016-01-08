@@ -13,7 +13,9 @@ function $$(el, s) {
 
 
 function app(el, config, doc, charts) {
-    el.innerHTML = templateFn(doc.snap);
+    var sections = doc.snap.types.map(type => doc.sections.filter(s => s.type === type)[0]);
+
+    el.innerHTML = templateFn({sections});
 
     $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
 }

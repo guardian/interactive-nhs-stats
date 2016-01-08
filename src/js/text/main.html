@@ -17,7 +17,7 @@
             <h2 class="nhs-section__header">{{=section.header}}</h2>
             <p class="nhs-section__headline">{{=section.headline}}</p>
             {{?section.block === 'chart'}}
-                <ul class="nhs-section__key">
+                <ul class="nhs-chart-key">
                     {{~section.series :series}}
                         <li data-series="{{=series}}">{{=series}}</li>
                     {{~}}

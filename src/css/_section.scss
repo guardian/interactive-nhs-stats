@@ -50,34 +50,7 @@
     }
 }
 
-.nhs-section__key {
-    @include fs-textSans(2);
-    list-style: none;
-    padding: 0;
-    margin: 0 0 18px;
-
-    & > li {
-        display: inline-block;
-        margin-right: 10px;
-        &::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            margin-right: 5px;
-            border-radius: 100px;
-        }
-
-        @each $series, $color in $series-colors {
-            &[data-series='#{$series}']::before {
-                background-color: $color;
-            }
-        }
-    }
-}
-
 .nhs-section__chart {
-    width: 100%;
     max-width: 660px;
     height: 220px;
     @include mq(leftCol) {

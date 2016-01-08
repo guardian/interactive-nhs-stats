@@ -14,21 +14,8 @@ function $$(el, s) {
     return [].slice.apply(el.querySelectorAll(s));
 }
 
-function last(array) {
-    return array[array.length - 1];
-}
-
 function app(el, config, doc, charts) {
     var shareFn = share(doc.furniture.headline, doc.furniture.shortURL, doc.furniture.hashtag);
-
-    doc.sections.forEach(section => {
-        if (section.block === 'chart') {
-            var series = charts[section.type].series;
-            var latest = last(last(series).values);
-            section.headline = section.headline.replace('{x}', latest.value.toLocaleString());
-            section.series = series.filter(s => s.values.length > 0).map(s => s.key);
-        }
-    });
 
     el.innerHTML = templateFn(doc);
 
