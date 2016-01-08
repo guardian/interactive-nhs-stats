@@ -24,6 +24,10 @@ module.exports = function(grunt) {
             harness: {
                 files: ['harness/**/*'],
                 tasks: ['harness']
+            },
+            thrasher: {
+                files: ['src/thrasher.json.tpl', 'src/thrasher.html'],
+                tasks: ['template:thrasher']
             }
         },
 
@@ -63,6 +67,16 @@ module.exports = function(grunt) {
                 'files': {
                     'build/boot.js': ['src/js/boot.js.tpl'],
                 }
+            },
+            'thrasher': {
+                'options': {
+                    'data': function () {
+                        return {'html': JSON.stringify(fs.readFileSync('src/thrasher.html').toString())};
+                    }
+                },
+                'files': {
+                    'build/source.json': ['src/thrasher.json.tpl']
+                }
             }
         },
 
@@ -81,7 +95,7 @@ module.exports = function(grunt) {
                 files: [
                     { // BOOT
                         expand: true, cwd: 'build/',
-                        src: ['boot.js'],
+                        src: ['boot.js', 'source.json'],
                         dest: 'deploy/<%= visuals.timestamp %>'
                     },
                     { // ASSETS
@@ -154,7 +168,7 @@ module.exports = function(grunt) {
                     { // BOOT
                         expand: true,
                         cwd: 'deploy/<%= visuals.timestamp %>',
-                        src: ['boot.js'],
+                        src: ['boot.js', 'source.json'],
                         dest: '<%= visuals.s3.path %>',
                         params: { CacheControl: 'max-age=60' }
                     }]
@@ -197,7 +211,7 @@ module.exports = function(grunt) {
         grunt.log.writeln(grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/boot.js'))
     })
 
-    grunt.registerTask('interactive', ['shell:interactive', 'template:bootjs', 'sass:interactive', 'copy:assets'])
+    grunt.registerTask('interactive', ['shell:interactive', 'template:bootjs', 'template:thrasher', 'sass:interactive', 'copy:assets'])
     grunt.registerTask('default', ['clean', 'copy:harness', 'interactive', 'connect', 'watch']);
     grunt.registerTask('build', ['clean', 'interactive']);
     grunt.registerTask('deploy', ['loadDeployConfig', 'prompt:visuals', 'build', 'copy:deploy', 'aws_s3', 'boot_url']);
