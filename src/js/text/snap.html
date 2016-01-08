@@ -3,14 +3,14 @@
         <li class="nhs-snap">
             <h2 class="nhs-snap__header">{{=section.header}}</h2>
             <p class="nhs-snap__headline">{{=section.headline}}</p>
-            <ul class="nhs-chart-key">
-                {{~section.series :series}}
-                    <li data-series="{{=series}}">{{=series}}</li>
-                {{~}}
-            </ul>
-            {{?section.type === 'chart'}}
+            {{?section.block === 'chart'}}
+                <ul class="nhs-snap__key nhs-chart-key">
+                    {{~section.series :series}}
+                        <li data-series="{{=series}}">{{=series}}</li>
+                    {{~}}
+                </ul>
                 <svg class="nhs-snap__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
-            {{??section.type === 'salaries'}}
+            {{??section.block === 'salaries'}}
             {{?}}
         </li>
     {{~}}

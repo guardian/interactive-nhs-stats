@@ -16,7 +16,7 @@ function svgEl(parentEl, type, clazz='', attrs={}) {
     return el;
 }
 
-export default function createChart(el, chart) {
+export default function createChart(el, chart, shortLabels=false) {
     var width, height;
 
     var xValues = chart.series
@@ -46,8 +46,8 @@ export default function createChart(el, chart) {
         el.innerHTML = '';
 
         var xTicLabelGroup = svgEl(el, 'g', '', {'transform': `translate(0, ${height + 15})`});
-        svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMin)}).textContent = 'December';
-        svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMax)}).textContent = 'March';
+        svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMin)}).textContent = shortLabels ? 'Dec' : 'December';
+        svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMax)}).textContent = shortLabels ? 'Mar': 'March';
 
         var yTicGroup = svgEl(el, 'g');
         var yTicLabelGroup = svgEl(el, 'g')

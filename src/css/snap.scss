@@ -2,9 +2,9 @@
 @import "mq";
 
 $series-colors: (
-    '2013/14': #dcdcdc,
-    '2014/15': #bdbdbd,
-    '2015/16': white
+    '2013/14': #ff9b0b,
+    '2014/15': #767676,
+    '2015/16': #5bc4bf
 );
 
 @import "chart";
@@ -18,8 +18,8 @@ body,
 figure.interactive {
     margin: 0;
     padding: 0;
-    background-color: #8ed4ce;
-    color: white;
+    background-color: #eaeaea;
+    color: #333;
 }
 
 .nhs-snaps {
@@ -33,17 +33,12 @@ figure.interactive {
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
-    width: 220px;
+    width: 300px;
     height: 330px;
-    padding: 10px;
+    padding: 20px;
 
     &:nth-child(odd) {
-        background-color: #6ec2bd;
-    }
-    &:nth-child(even) {
-        .nhs-snap__header {
-            color: #2c3979;
-        }
+        background-color: #dcdcdc;
     }
 }
 
@@ -51,14 +46,21 @@ figure.interactive {
     @include f-header;
     font-size: 14px;
     line-height: 18px;
-    color: white;
     margin: 0 0 6px;
 }
 
 .nhs-snap__headline {
     @include fs-headline(5);
-    color: #333;
     margin:  0 0 12px;
+}
+
+.nhs-snap__key {
+    & > li {
+        margin-right: 5px;
+        &::before {
+            margin-right: 3px;
+        }
+    }
 }
 
 .nhs-snap__chart {
@@ -66,14 +68,18 @@ figure.interactive {
     height: 100px;
 
     .nhs-chart__y-tic {
-        stroke-dasharray: 0;
+        stroke: #bdbdbd;
     }
 
     .nhs-chart__y-tic-label {
         fill: none;
         &:first-child,
         &:last-child {
-            fill: white;
+            fill: #333;
         }
+    }
+
+    .nhs-chart__x-tic-label {
+        fill: #333;
     }
 }

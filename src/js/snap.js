@@ -17,7 +17,7 @@ function app(el, config, doc, charts) {
 
     el.innerHTML = templateFn({sections});
 
-    $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
+    $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')], true));
 }
 
 window.init = function init(el, config) {
