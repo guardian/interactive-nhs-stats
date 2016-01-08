@@ -13,6 +13,8 @@ function $$(el, s) {
 
 
 function app(el, config, doc, charts) {
+    el.href = doc.furniture.shortURL;
+
     var sections = doc.snap.types
         .map(type => doc.sections.filter(s => s.type === type)[0])
         .filter(section => section);
