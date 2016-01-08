@@ -7,10 +7,17 @@ import snapHTML from './text/snap.html!text'
 
 const templateFn = doT.template(snapHTML);
 
-function app(el, config, doc, sheet) {
+function $$(el, s) {
+    return [].slice.apply(el.querySelectorAll(s));
+}
+
+
+function app(el, config, doc, charts) {
     el.innerHTML = templateFn(doc.snap);
+
+    $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
 }
 
 window.init = function init(el, config) {
-    loadData((doc, sheet) => app(el, config, doc, sheet));
+    loadData((doc, charts) => app(el, config, doc, charts));
 }

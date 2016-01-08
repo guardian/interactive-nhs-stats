@@ -1,7 +1,7 @@
 import doT from 'olado/doT'
 import share from './lib/share'
 import loadData from './lib/loadData'
-import groupBy from './lib/groupBy'
+import parseNumber from './lib/parseNumber'
 
 import chart from './components/chart'
 import salary from './components/salary'
@@ -14,40 +14,12 @@ function $$(el, s) {
     return [].slice.apply(el.querySelectorAll(s));
 }
 
-function parseNumber(s) {
-    return parseFloat(s.replace(/,/g, ''));
-}
-
 function last(array) {
     return array[array.length - 1];
 }
 
-function app(el, config, doc, sheet) {
+function app(el, config, doc, charts) {
     var shareFn = share(doc.furniture.headline, doc.furniture.shortURL, doc.furniture.hashtag);
-
-    var charts = {};
-    sheet.sheets.charts.forEach(chart => {
-        var stats = sheet.sheets.data
-            .map(row => {
-                return {
-                    'series': row.series,
-                    'year': parseNumber(row.year),
-                    'month': row.month,
-                    'week': parseNumber(row.week),
-                    'value': parseNumber(row[chart.type])
-                };
-            })
-            .filter(stat => !isNaN(stat.value));
-
-        charts[chart.type] = {
-            'series': groupBy(stats, 'series'),
-            'options': {
-                'min': parseNumber(chart.min),
-                'max': parseNumber(chart.max),
-                'tic': parseNumber(chart.tic)
-            }
-        };
-    });
 
     doc.sections.forEach(section => {
         if (section.block === 'chart') {
@@ -70,5 +42,5 @@ function app(el, config, doc, sheet) {
 }
 
 export function init(el, context, config, mediator) {
-    loadData((doc, sheet) => app(el, config, doc, sheet));
+    loadData((doc, charts) => app(el, config, doc, charts));
 }

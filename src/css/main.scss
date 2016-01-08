@@ -7,9 +7,10 @@ $series-colors: (
 
 @import "fonts";
 @import "mq";
+@import "chart";
 @import "general";
+@import "snap";
 @import "header";
 @import "section";
-@import "chart";
 @import "job";
 @import "share";

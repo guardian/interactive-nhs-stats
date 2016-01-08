@@ -10,9 +10,6 @@
     display: block;
     overflow: visible !important;
     margin: 0 0 40px 50px;
-    @include mq(leftCol) {
-        margin-left: 0;
-    }
 }
 
 .nhs-chart__y-tic {

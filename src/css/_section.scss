@@ -80,4 +80,7 @@
     width: 100%;
     max-width: 660px;
     height: 220px;
+    @include mq(leftCol) {
+        margin-left: 0;
+    }
 }
