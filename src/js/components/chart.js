@@ -5,7 +5,7 @@ import tLS from '../lib/tLS';
 const xmlns = 'http://www.w3.org/2000/svg';
 
 const marginTop = 10;
-const marginLeft = 40;
+const marginLeft = 50;
 const marginBottom = 40;
 
 function svgEl(parentEl, type, clazz='', attrs={}) {
