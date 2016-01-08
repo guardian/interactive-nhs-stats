@@ -4,6 +4,7 @@ import tLS from '../lib/tLS';
 
 const xmlns = 'http://www.w3.org/2000/svg';
 
+const marginTop = 10;
 const marginLeft = 40;
 const marginBottom = 40;
 
@@ -38,7 +39,7 @@ export default function createChart(el, chart, shortLabels=false) {
     }
 
     function y(value) {
-        return (1 - (value - chart.options.min) / yRange) * (height - marginBottom);
+        return (1 - (value - chart.options.min) / yRange) * (height - marginBottom - marginTop) + marginTop;
     }
 
     function render() {
