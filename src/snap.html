@@ -6,10 +6,10 @@
     <link rel="stylesheet" type="text/css" href="<%= assetPath %>/snap.css" />
 </head>
 <body>
-    <div class="interactive"></div>
+    <a href="http://www.theguardian.com/" class="nhs-snap-interactive js-interactive"></a>
     <script src="<%= assetPath %>/snap.js"></script>
     <script>
-        init(document.querySelector('.interactive'), {'assetPath': '<%= assetPath %>'});
+        init(document.querySelector('.js-interactive'), {'assetPath': '<%= assetPath %>'});
     </script>
 </body>
 </html>

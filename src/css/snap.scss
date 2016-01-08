@@ -3,7 +3,7 @@
 
 $series-colors: (
     '2013/14': #ff9b0b,
-    '2014/15': #e6711b,
+    '2014/15': #00427a,
     '2015/16': white
 );
 
@@ -14,12 +14,17 @@ body {
     overflow: hidden;
 }
 
-body,
-figure.interactive {
+body {
     margin: 0;
     padding: 0;
-    background-color: #83d4ce;
-    color: #333;
+}
+
+.nhs-snap-interactive {
+    display: block;
+    &,
+    &:hover {
+        color: #333;
+    }
 }
 
 .nhs-snaps {
@@ -33,12 +38,13 @@ figure.interactive {
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
-    width: 316px;
+    width: 313px;
     height: 400px;
     padding: 20px;
 
+    background-color: #6ec2bd;
     &:nth-child(odd) {
-        background-color: #6ec2bd;
+        background-color: #83d4ce;
     }
 }
 
