@@ -47,7 +47,9 @@ export default function createChart(el, chart, shortLabels=false) {
         width = rect.width;
         height = rect.height;
 
-        el.innerHTML = '';
+        while (el.lastChild) {
+            el.removeChild(el.lastChild);
+        }
 
         var xTicLabelGroup = svgEl(el, 'g', '', {'transform': `translate(0, ${height - marginBottom + 15})`});
         svgEl(xTicLabelGroup, 'text', 'nhs-chart__x-tic-label', {'x': x(xMin)}).textContent = shortLabels ? 'Dec' : 'December';
