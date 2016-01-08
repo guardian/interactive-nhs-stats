@@ -3,8 +3,8 @@
 
 $series-colors: (
     '2013/14': #ff9b0b,
-    '2014/15': #767676,
-    '2015/16': #5bc4bf
+    '2014/15': #e6711b,
+    '2015/16': white
 );
 
 @import "chart";
@@ -18,7 +18,7 @@ body,
 figure.interactive {
     margin: 0;
     padding: 0;
-    background-color: #eaeaea;
+    background-color: #83d4ce;
     color: #333;
 }
 
@@ -33,12 +33,12 @@ figure.interactive {
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
-    width: 300px;
-    height: 330px;
+    width: 316px;
+    height: 400px;
     padding: 20px;
 
     &:nth-child(odd) {
-        background-color: #dcdcdc;
+        background-color: #6ec2bd;
     }
 }
 
@@ -66,10 +66,11 @@ figure.interactive {
 
 .nhs-snap__chart {
     margin-top: 6px;
-    height: 100px;
+    height: 160px;
 
     .nhs-chart__y-tic {
-        stroke: #bdbdbd;
+        stroke: #333;
+        stroke-opacity: 0.5;
     }
 
     .nhs-chart__y-tic-label {
