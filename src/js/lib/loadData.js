@@ -13,13 +13,13 @@ function last(array) {
 
 export default function loadData(fn) {
     var docReq = reqwest({
-        url: sheetURL(docID),
+        url: sheetURL(docID, true),
         type: 'json',
         crossOrigin: true
     });
 
     var sheetReq = reqwest({
-        url: sheetURL(sheetID),
+        url: sheetURL(sheetID, true),
         type: 'json',
         crossOrigin: true
     });
