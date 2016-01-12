@@ -16,8 +16,32 @@ body {
     padding: 0;
 }
 
+.nhs-embed-headline {
+    @include fs-headline(5);
+    margin: 0 0 6px;
+}
 
-.nhs-embed__chart {
+.nhs-embed-chart {
     width: 100%;
     height: 400px;
+}
+
+.nhs-embed-btn {
+    @include fs-textSans(2);
+    font-weight: bold;
+    line-height: 30px;
+    padding: 0 5px 0 12px;
+    border-radius: 100px;
+    background: #005689;
+    color: white;
+    float: right;
+    &,
+    &:hover {
+        text-decoration: none;
+    }
+
+    svg {
+        display: inline-block;
+        vertical-align: middle;
+    }
 }

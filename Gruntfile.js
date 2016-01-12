@@ -123,10 +123,14 @@ module.exports = function(grunt) {
             },
             deploy: {
                 files: [
-                    { // BOOT
+                    { // BOOT and SNAP
                         expand: true, cwd: 'build/',
-                        src: ['boot.js', 'snap.html', 'embed.html'],
+                        src: ['boot.js', 'snap.html'],
                         dest: 'deploy/<%= visuals.timestamp %>'
+                    },
+                    // EMBED
+                    {
+                        'deploy/<%= visuals.timestamp %>/embed/embed.html': 'build/embed.html'
                     },
                     { // ASSETS
                         expand: true, cwd: 'build/',
@@ -199,7 +203,7 @@ module.exports = function(grunt) {
                     { // BOOT
                         expand: true,
                         cwd: 'deploy/<%= visuals.timestamp %>',
-                        src: ['boot.js', 'snap.html', 'embed.html'],
+                        src: ['boot.js', 'snap.html', 'embed/embed.html'],
                         dest: '<%= visuals.s3.path %>',
                         params: { CacheControl: 'max-age=60' }
                     }]
@@ -238,13 +242,16 @@ module.exports = function(grunt) {
     })
 
     grunt.registerTask('boot_url', function() {
-        grunt.log.write('\nBOOT URL: '['green'].bold)
+        grunt.log.write('\nBOOT: '['green'].bold)
         grunt.log.writeln(grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/boot.js'))
 
         var url = 'http://preview.gutools.co.uk/global/ng-interactive/2016/jan/07/how-is-the-nhs-getting-on';
         var snapURL = grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/snap.html');
         grunt.log.write('\nSNAP: '['green'].bold)
         grunt.log.writeln(url + '?gu-snapType=document&gu-snapUri=' + encodeURIComponent(snapURL));
+
+        grunt.log.write('\nEMBED: '['green'].bold)
+        grunt.log.writeln(grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/embed/embed.html'))
     })
 
     grunt.registerTask('snap', ['shell:snap', 'sass:snap', 'template:snap']);

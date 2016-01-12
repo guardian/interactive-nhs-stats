@@ -12,8 +12,7 @@ var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 function app(el, config, doc, charts) {
     var type = window.location.search.substr(1);
     var section = doc.sections.filter(s => s.type === type)[0];
-    console.log(section);
-    el.innerHTML = templateFn({section});
+    el.innerHTML = templateFn({section, 'shortURL': doc.furniture.shortURL});
 
     $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')]));
 
