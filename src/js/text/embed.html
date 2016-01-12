@@ -1,4 +1,9 @@
 <h1 class="nhs-embed-headline">{{=it.section.headline}}</h1>
+<ul class="nhs-chart-key">
+    {{~it.section.series :series}}
+        <li data-series="{{=series}}">{{=series}}</li>
+    {{~}}
+</ul>
 <svg class="nhs-embed-chart nhs-chart js-chart" data-type="{{=it.section.type}}" />
 <a class="nhs-embed-btn" href="{{=it.shortURL}}">
     See more
