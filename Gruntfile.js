@@ -15,7 +15,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['src/css/**/*'],
-                tasks: ['sass:interactive', 'sass:snap'],
+                tasks: ['sass'],
             },
             assets: {
                 files: ['src/assets/**/*'],
@@ -26,8 +26,12 @@ module.exports = function(grunt) {
                 tasks: ['harness']
             },
             snap: {
-                files: ['src/thrasher.json.tpl', 'src/snap.html'],
+                files: ['src/snap.html'],
                 tasks: ['template:snap']
+            },
+            embed: {
+                files: ['src/embed.html'],
+                tasks: ['template:embed']
             }
         },
 
@@ -48,6 +52,11 @@ module.exports = function(grunt) {
                 files: {
                     'build/snap.css': 'src/css/snap.scss'
                 }
+            },
+            embed: {
+                files: {
+                    'build/embed.css': 'src/css/embed.scss'
+                }
             }
         },
 
@@ -67,23 +76,36 @@ module.exports = function(grunt) {
                         cwd: '.'
                     }
                 }
+            },
+            embed: {
+                command: './node_modules/.bin/jspm bundle-sfx <%= visuals.jspmFlags %> src/js/embed build/embed.js',
+                options: {
+                    execOptions: {
+                        cwd: '.'
+                    }
+                }
             }
         },
 
         'template': {
             'options': {
                 'data': {
-                    'assetPath': '<%= visuals.assetPath %>',
+                    'assetPath': '<%= visuals.assetPath %>'
                 }
             },
             'bootjs': {
                 'files': {
-                    'build/boot.js': ['src/js/boot.js.tpl'],
+                    'build/boot.js': ['src/js/boot.js.tpl']
                 }
             },
             'snap': {
                 'files': {
-                    'build/snap.html': ['src/snap.html'],
+                    'build/snap.html': ['src/snap.html']
+                }
+            }
+            'embed': {
+                'files': {
+                    'build/embed.html': ['src/embed.html']
                 }
             }
         },
@@ -103,12 +125,13 @@ module.exports = function(grunt) {
                 files: [
                     { // BOOT
                         expand: true, cwd: 'build/',
-                        src: ['boot.js', 'source.json', 'snap.html'],
+                        src: ['boot.js', 'snap.html', 'embed.html'],
                         dest: 'deploy/<%= visuals.timestamp %>'
                     },
                     { // ASSETS
                         expand: true, cwd: 'build/',
-                        src: ['main.js', 'main.css', 'snap.js', 'snap.css', 'main.js.map', 'main.css.map', 'assets/**/*'],
+                        src: ['main.js', 'main.css', 'snap.js', 'snap.css', 'embed.js', 'embed.css',
+                            'main.js.map', 'main.css.map', 'assets/**/*'],
                         dest: 'deploy/<%= visuals.timestamp %>/<%= visuals.timestamp %>'
                     }
                 ]
@@ -176,7 +199,7 @@ module.exports = function(grunt) {
                     { // BOOT
                         expand: true,
                         cwd: 'deploy/<%= visuals.timestamp %>',
-                        src: ['boot.js', 'source.json', 'snap.html'],
+                        src: ['boot.js', 'snap.html', 'embed.html'],
                         dest: '<%= visuals.s3.path %>',
                         params: { CacheControl: 'max-age=60' }
                     }]
@@ -224,10 +247,12 @@ module.exports = function(grunt) {
         grunt.log.writeln(url + '?gu-snapType=document&gu-snapUri=' + encodeURIComponent(snapURL));
     })
 
-    grunt.registerTask('snap', ['shell:snap', 'sass:snap', 'template:snap'])
-    grunt.registerTask('interactive', ['shell:interactive', 'template:bootjs', 'snap', 'sass:interactive', 'copy:assets'])
-    grunt.registerTask('default', ['clean', 'copy:harness', 'interactive', 'connect', 'watch']);
-    grunt.registerTask('build', ['clean', 'interactive']);
+    grunt.registerTask('snap', ['shell:snap', 'sass:snap', 'template:snap']);
+    grunt.registerTask('embed', ['shell:embed', 'sass:embed', 'template:embed']);
+    grunt.registerTask('interactive', ['shell:interactive', 'sass:interactive', 'template:bootjs']);
+    grunt.registerTask('all', ['interactive', 'snap', 'embed', 'copy:assets'])
+    grunt.registerTask('default', ['clean', 'copy:harness', 'all', 'connect', 'watch']);
+    grunt.registerTask('build', ['clean', 'all']);
     grunt.registerTask('deploy', ['loadDeployConfig', 'prompt:visuals', 'build', 'copy:deploy', 'aws_s3', 'boot_url']);
 
     grunt.loadNpmTasks('grunt-aws');

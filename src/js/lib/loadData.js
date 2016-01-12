@@ -52,6 +52,14 @@ export default function loadData(fn) {
             };
         });
 
+        var flu = {};
+        sheet.sheets.flu.forEach(row => {
+            flu[row.la_code] = {
+                'rate': parseFloat(row.flu_rate),
+                'name': row.la_name
+            };
+        });
+
         doc.sections.forEach(section => {
             if (section.block === 'chart') {
                 var series = charts[section.type].series;
@@ -64,7 +72,7 @@ export default function loadData(fn) {
         });
 
 
-        fn(doc, charts);
+        fn(doc, charts, flu);
     });
     });
 }

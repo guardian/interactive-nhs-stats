@@ -48,6 +48,9 @@
                     <h3 class="nhs-number">{{=section.number}}</h3>
                 {{?}}
                 <p class="nhs-copy">{{=section.copy}}</p>
+            {{??section.block === 'flu'}}
+                <svg class="nhs-section__map nhs-map js-map"></svg>
+                <svg class="nhs-section__chart nhs-chart js-chart" data-type="flugp"></svg>
             {{?}}
             {{?section.source}}
                 <p class="nhs-source">{{=section.source}}</p>

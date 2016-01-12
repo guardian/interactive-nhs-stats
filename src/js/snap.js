@@ -5,12 +5,8 @@ import chart from './components/chart'
 
 import snapHTML from './text/snap.html!text'
 
-const templateFn = doT.template(snapHTML);
-
-function $$(el, s) {
-    return [].slice.apply(el.querySelectorAll(s));
-}
-
+var templateFn = doT.template(snapHTML);
+var $$ = (el, s) => [].slice.apply(el.querySelectorAll(s));
 
 function app(el, config, doc, charts) {
     el.href = doc.furniture.shortURL;
@@ -24,6 +20,4 @@ function app(el, config, doc, charts) {
     $$(el, '.js-chart').forEach(chartEl => chart(chartEl, charts[chartEl.getAttribute('data-type')], true));
 }
 
-window.init = function init(el, config) {
-    loadData((doc, charts) => app(el, config, doc, charts));
-}
+window.init = (el, config) => loadData(app.bind(null, el, config));

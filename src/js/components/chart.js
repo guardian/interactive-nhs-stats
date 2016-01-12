@@ -1,25 +1,11 @@
-import throttle from '../lib/throttle';
-import range from '../lib/range';
-import tLS from '../lib/tLS';
-
-const xmlns = 'http://www.w3.org/2000/svg';
+import throttle from '../lib/throttle'
+import range from '../lib/range'
+import tLS from '../lib/tLS'
+import svgEl from '../lib/svgEl'
 
 const marginTop = 10;
 const marginLeft = 50;
 const marginBottom = 40;
-
-function svgEl(parentEl, type, clazz='', attrs={}) {
-    var el = document.createElementNS(xmlns, type);
-
-    if (clazz) el.setAttributeNS(null, 'class', clazz);
-
-    for (var attr in attrs) {
-        el.setAttributeNS(null, attr, attrs[attr]);
-    }
-
-    parentEl.appendChild(el);
-    return el;
-}
 
 export default function createChart(el, chart, shortLabels=false) {
     var width, height;
