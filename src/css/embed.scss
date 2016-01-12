@@ -18,12 +18,20 @@ body {
 
 .nhs-embed-headline {
     @include fs-headline(5);
+    font-weight: 200px;
     margin: 0 0 8px;
+
+    b {
+        font-weight: 600;
+    }
 }
 
 .nhs-embed-chart {
     width: 100%;
-    height: 400px;
+    height: 190px;
+    @media (min-width: 600px) {
+        height: 260px;
+    }
 }
 
 .nhs-embed-btn {
