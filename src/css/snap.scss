@@ -1,20 +1,16 @@
-@import "fonts";
-@import "mq";
-
 $series-colors: (
     '2013/14': #ff9b0b,
     '2014/15': #00427a,
     '2015/16': white
 );
 
+@import "fonts";
+@import "mq";
 @import "chart";
 
 html,
 body {
     overflow: hidden;
-}
-
-body {
     margin: 0;
     padding: 0;
 }

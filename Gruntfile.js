@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['src/js/**/*'],
-                tasks: ['shell:interactive', 'shell:snap'],
+                tasks: ['shell:interactive', 'shell:snap', 'shell:embed'],
             },
             css: {
                 files: ['src/css/**/*'],
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
                 'files': {
                     'build/snap.html': ['src/snap.html']
                 }
-            }
+            },
             'embed': {
                 'files': {
                     'build/embed.html': ['src/embed.html']
