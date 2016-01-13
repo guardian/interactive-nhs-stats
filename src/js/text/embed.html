@@ -8,6 +8,7 @@
     <svg class="nhs-embed-chart nhs-chart js-chart" data-type="{{=it.section.type}}" />
 {{??it.section.block === 'salaries'}}
     <p class="nhs-embed-salary js-ticker" data-ticker="{{=it.section.job.salary}}"></p>
+    <p class="nhs-embed-total">£{{=it.section.job.salary}} annually</p>
 {{?}}
 {{?it.section.source}}
     <p class="nhs-source">{{=it.section.source}}</p>

@@ -18,7 +18,7 @@ function app(el, config, doc, charts) {
     if (type === 'salaries') {
         let jobId = parts[1];
         section.job = section.jobs.filter(job => job.id === jobId)[0];
-        section.headline = section.embedheadline.replace('{title}', section.job.title);
+        section.headline = section.embedheadline.replace('{title}', section.job.embedtitle);
     }
     el.innerHTML = templateFn({section, 'shortURL': doc.furniture.shortURL});
 

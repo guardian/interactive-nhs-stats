@@ -16,6 +16,10 @@ body {
     padding: 0;
 }
 
+p {
+    margin: 0 0 8px;
+}
+
 .nhs-embed-headline {
     @include fs-headline(5);
     font-weight: 200px;
@@ -59,19 +63,18 @@ body {
     margin: 0;
     color: $nhs;
     font-size: 90px;
-    line-height: 96px;
-    @media (min-width: 600px) {
-        font-size: 200px;
-        line-height: 210px;
-    }
+    line-height: 1;
 
     &::before {
         content: "£";
     }
 }
 
+.nhs-embed-total {
+    @include fs-textSans(2);
+}
+
 .nhs-source {
     @include fs-textSans(2);
     color: #bdbdbd;
-    margin: 0 0 8px;
 }

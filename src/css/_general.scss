@@ -58,11 +58,10 @@ a {
     color: $nhs;
     margin: 0;
 
+    line-height: 1;
     font-size: 90px;
-    line-height: 96px;
     @include mq(tablet) {
-        font-size: 200px;
-        line-height: 210px;
+        font-size: 210px;
     }
 }
 
