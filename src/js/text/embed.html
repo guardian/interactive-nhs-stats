@@ -1,10 +1,17 @@
 <h1 class="nhs-embed-headline">{{=it.section.headline}}</h1>
-<ul class="nhs-chart-key">
-    {{~it.section.series :series}}
-        <li data-series="{{=series}}">{{=series}}</li>
-    {{~}}
-</ul>
-<svg class="nhs-embed-chart nhs-chart js-chart" data-type="{{=it.section.type}}" />
+{{?it.section.block === 'chart'}}
+    <ul class="nhs-chart-key">
+        {{~it.section.series :series}}
+            <li data-series="{{=series}}">{{=series}}</li>
+        {{~}}
+    </ul>
+    <svg class="nhs-embed-chart nhs-chart js-chart" data-type="{{=it.section.type}}" />
+{{??it.section.block === 'salaries'}}
+    <p class="nhs-embed-salary js-ticker" data-ticker="{{=it.section.job.salary}}"></p>
+{{?}}
+{{?it.section.source}}
+    <p class="nhs-source">{{=it.section.source}}</p>
+{{?}}
 <a class="nhs-embed-btn" href="{{=it.shortURL}}" target="_top">
     See more
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path fill="currentColor" d="M22.82 14.63l-7.62-7.63-.72.7 5.5 6.57h-13.98v1.46h13.97l-5.5 6.56.73.7 7.62-7.63v-.74"/></svg>

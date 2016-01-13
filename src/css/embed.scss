@@ -53,3 +53,25 @@ body {
         vertical-align: middle;
     }
 }
+
+.nhs-embed-salary {
+    @include f-headline;
+    margin: 0;
+    color: $nhs;
+    font-size: 90px;
+    line-height: 96px;
+    @media (min-width: 600px) {
+        font-size: 200px;
+        line-height: 210px;
+    }
+
+    &::before {
+        content: "£";
+    }
+}
+
+.nhs-source {
+    @include fs-textSans(2);
+    color: #bdbdbd;
+    margin: 0 0 8px;
+}
