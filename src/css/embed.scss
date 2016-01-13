@@ -20,13 +20,23 @@ p {
     margin: 0 0 8px;
 }
 
+.nhs-embed-title {
+    @include fs-header(1);
+    display: inline-block;
+    padding-top: 5px;
+    margin: 15px 0 0;
+    color: $nhs;
+    border-top: 1px solid #dcdcdc;
+}
+
 .nhs-embed-headline {
-    @include fs-headline(5);
-    font-weight: 200px;
+    @include fs-headline(4);
+    font-weight: normal;
+    line-height: 30px;
     margin: 0 0 8px;
 
     b {
-        font-weight: 600;
+        font-weight: inherit;
     }
 }
 
