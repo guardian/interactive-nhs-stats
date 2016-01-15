@@ -1,17 +1,18 @@
 <ul class="nhs-snaps">
-    {{~it.sections :section}}
+    {{~it.sections :section:i}}
         <li class="nhs-snap">
-            <h2 class="nhs-snap__header">{{=section.header}}</h2>
-            <p class="nhs-snap__headline">{{=section.headline}}</p>
-            {{?section.block === 'chart'}}
+            <div class="nhs-snap__top">
+                <h2 class="nhs-snap__header">{{?!i}}NHS dashboard{{??}}&nbsp;{{?}}</h2>
+                <p class="nhs-snap__headline">{{=section.headline}}</p>
                 <ul class="nhs-snap__key nhs-chart-key">
                     {{~section.series :series}}
                         <li data-series="{{=series}}">{{=series}}</li>
                     {{~}}
                 </ul>
+            </div>
+            <div class="nhs-snap__bottom">
                 <svg class="nhs-snap__chart nhs-chart js-chart" data-type="{{=section.type}}"></svg>
-            {{??section.block === 'salaries'}}
-            {{?}}
+            </div>
         </li>
     {{~}}
 </ul>

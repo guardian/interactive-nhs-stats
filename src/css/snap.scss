@@ -4,6 +4,10 @@ $series-colors: (
     '2015/16': white
 );
 
+$chart: 240px;
+$two-col: 550px;
+$three-col: 850px;
+
 @import "fonts";
 @import "mq";
 @import "chart";
@@ -13,10 +17,14 @@ body {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .nhs-snap-interactive {
     display: block;
+    border-top: 1px solid #5bc4bf;
+    height: 100%;
+
     &,
     &:hover {
         color: #333;
@@ -29,19 +37,23 @@ body {
     margin: 0;
     padding: 0;
     font-size: 0;
+    height: 100%;
 }
 
 .nhs-snap {
+    display: inline-table;
+    border-spacing: 0;
+    border-collapse: separate;
     vertical-align: top;
     box-sizing: border-box;
-    height: 400px;
-    padding: 20px;
+    height: 100%;
+    padding: 0 5px;
 
-    @media (min-width: 700px) {
-        display: inline-block;
+    @media (min-width: $two-col) {
+        padding: 0 10px;
         width: 50%;
     }
-    @media (min-width: 940px) {
+    @media (min-width: $three-col) {
         width: 33.3333%;
     }
 
@@ -51,20 +63,41 @@ body {
     }
 }
 
+.nhs-snap__top,
+.nhs-snap__bottom {
+    display: table-row;
+}
+
+.nhs-snap__bottom {
+    height: 100%;
+}
+
 .nhs-snap__header {
     @include f-header;
     font-size: 14px;
     line-height: 18px;
-    margin: 0 0 6px;
+    margin: 0;
 }
 
 .nhs-snap__headline {
-    @include fs-headline(5);
-    margin:  0 0 12px;
-    height: 96px;
+    @include fs-headline(4);
+    font-weight: 500;
+    margin:  0 0 6px;
+    @media (min-width: $two-col) {
+        height: 84px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .nhs-snap__key {
+    margin: 0 0 8px;
+
+    display: none;
+    @media (min-height: $chart) {
+        display: block;
+    }
+
     & > li {
         margin-right: 5px;
         &::before {
@@ -74,8 +107,15 @@ body {
 }
 
 .nhs-snap__chart {
-    margin-top: 6px;
-    height: 200px;
+    height: 100%;
+    max-height: 200px;
+    margin: 6px 5px 0;
+    width: calc(100% - 10px);
+
+    display: none;
+    @media (min-height: $chart) {
+        display: block;
+    }
 
     .nhs-chart__y-tic {
         stroke: #333;
@@ -92,5 +132,13 @@ body {
 
     .nhs-chart__x-tic-label {
         fill: #333;
+    }
+
+    .nhs-chart__threshold {
+        stroke: none;
+    }
+
+    .nhs-chart__threshold-label {
+        fill: none;
     }
 }

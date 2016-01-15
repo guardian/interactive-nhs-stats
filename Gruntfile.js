@@ -245,7 +245,7 @@ module.exports = function(grunt) {
         grunt.log.write('\nBOOT: '['green'].bold)
         grunt.log.writeln(grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/boot.js'))
 
-        var url = 'http://preview.gutools.co.uk/global/ng-interactive/2016/jan/07/how-is-the-nhs-getting-on';
+        var url = 'http://preview.gutools.co.uk/global/ng-interactive/2016/jan/13/how-is-the-nhs-getting-on';
         var snapURL = grunt.template.process('<%= visuals.s3.domain %><%= visuals.s3.path %>/snap.html');
         grunt.log.write('\nSNAP: '['green'].bold)
         grunt.log.writeln(url + '?gu-snapType=document&gu-snapUri=' + encodeURIComponent(snapURL));
