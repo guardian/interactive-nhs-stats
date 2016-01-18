@@ -6,7 +6,6 @@ import tLS from './lib/tLS'
 
 import chart from './components/chart'
 import ticker from './components/ticker'
-import map from './components/map'
 
 import mainHTML from './text/main.html!text'
 
