@@ -16,6 +16,7 @@
 
 .nhs-header__title {
     @include fs-headline(9);
+    max-width: 660px;
     font-weight: 200;
     margin: 0 0 24px;
 }
