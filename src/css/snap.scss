@@ -4,7 +4,7 @@ $series-colors: (
     '2015/16': white
 );
 
-$chart: 240px;
+$chart: 220px;
 $two-col: 550px;
 $three-col: 850px;
 
@@ -58,9 +58,9 @@ body {
         width: 33.3333%;
     }
 
-    background-color: #dcdcdc;
+    background-color: #bdbdbd;
     &:nth-child(odd) {
-        background-color: #bdbdbd;
+        background-color: #dcdcdc;
     }
 }
 
